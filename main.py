@@ -76,7 +76,7 @@ def main():
                 if(label[i] == torch.max(p.data,0)[1]):
                     total = total+1
 
-        accuracy_val = total/len(validation_set)
+        accuracy_val = total/len(val_set)
         accuracy_total_val.append(accuracy_val)
 
         total_val_loss = total_val_loss/(idx+1)
