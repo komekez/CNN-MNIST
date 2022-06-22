@@ -58,8 +58,30 @@ def main():
         accuracy_train = total/(len(train_set))
         accuracy_total_train.append(accuracy_train)
 
+        total_train_loss = total_train_loss/(idx+1)
+        train_loss.append(total_train_loss)
+
+
+        model.eval()
+        total = 0
+        for idx, (image,label) in enumerate(validation_loader):
+            image, label = image, label
+
+            pred = model(image)
+            loss = criterion(pred, label)
+            total_val_loss += loss.item()
+
+            pred = torch.nn.functional.softmax(pred, dim=1)
+            for i, p in enumerate(pred):
+                if(label[i] == torch.max(p.data,0)[1]):
+                    total = total+1
+
+        accuracy_val = total/len(validation_set)
+        accuracy_total_val.append(accuracy_val)
+
         total_val_loss = total_val_loss/(idx+1)
-        val_loss.append(accuracy_train)
+        val_loss.append(total_val_loss)
+
 
         if epoch % 5 == 0:
             print("Epoch: {}/{}  ".format(epoch, epochs),
