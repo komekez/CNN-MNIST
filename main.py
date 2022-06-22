@@ -11,7 +11,16 @@ from datasetHelper import loadDataset
 
 
 def main():
-    train_data, validation_data = loadDataset()
+    train_loader, validation_loader = loadDataset()
+
+    training_data = enumerate(train_loader)
+    batch_idx, (images, labels) = next(training_data)
+
+    print(type(images)) # Checking the datatype 
+    print(images.shape) # the size of the image
+    print(labels.shape) # the size of the labels
+
+    
 
 main()
 
