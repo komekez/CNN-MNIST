@@ -5,22 +5,22 @@ from torch import nn
 class neuralNetwork(nn.Module):
 
     def __init__(self):
-        super(Network, self).__init__()
+        super(neuralNetwork, self).__init__()
 
         self.convolutaional_neural_network_layers = nn.Sequential(
-            nn.Conv2d(in_channels=1, out_channels=12, kernel_size=3, padding=1, stride=1)
-            nn.ReLU()
-            nn.MaxPool2d(kernel_size=2)
+            nn.Conv2d(in_channels=1, out_channels=12, kernel_size=3, padding=1, stride=1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
 
-            nn.Conv2d(in_channels=12, out_channels=24, kernel_size=3, padding=1, stride=1)
-            nn.ReLU()
+            nn.Conv2d(in_channels=12, out_channels=24, kernel_size=3, padding=1, stride=1),
+            nn.ReLU(),
             nn.MaxPool2d(kernel_size=2)
         )
 
-        self.linear_lauers = nn.Sequential(
-            nn.Linear(in_features=24*7*7, out_features=64)
-            nn.ReLU()
-            nn.Dropout(0.2)
+        self.linear_layers = nn.Sequential(
+            nn.Linear(in_features=24*7*7, out_features=64),
+            nn.ReLU(),
+            nn.Dropout(0.2),
             nn.Linear(in_features=64, out_features=10)
         )
 

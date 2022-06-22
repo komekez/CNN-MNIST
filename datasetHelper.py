@@ -13,4 +13,4 @@ def loadDataset():
     validation_set = datasets.MNIST('DATA_MNIST/', download=True, train=False, transform=transform)
     validationLoader = torch.utils.data.DataLoader(validation_set, batch_size=64, shuffle=True)
 
-    return trainLoader, validationLoader
+    return trainLoader, validationLoader, train_set, validation_set
